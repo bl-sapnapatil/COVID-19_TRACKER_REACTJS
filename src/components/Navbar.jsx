@@ -1,8 +1,6 @@
 import React from 'react'
-import {ListItemIcon,ListItemText} from '@material-ui/core'
 import '../scss/navbar.scss'
 import { Home ,Users,Package,HelpCircle, Book} from 'react-feather'
-import { Link } from 'react-router-dom'
 class Navbar extends React.Component{
     render(){
         return(

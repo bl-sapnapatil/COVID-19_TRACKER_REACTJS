@@ -1,25 +1,27 @@
+import './App.scss';
 import React, { lazy,Suspense } from 'react';
-import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Redirect} from 'react-router-dom';
+import Navbar from './components/Navbar'
 
-const Navbar = lazy(()=>
-  import('./components/Navbar')
+const Home = lazy(()=>
+  import('./components/Home')
 )
+
 function App() {
   const pages = 
     {
-      pageLink:'/Navbar',
-      view:Navbar,
-      displayName:'Navbar',
-      
+      pageLink:'/',
+      view:Home,
+      displayName:'Home',
     }
-  
+      
   return (
     <div className="App">
       <Suspense fallback={<div />}>
       <Router>
-        <div>
-      <Route path={pages.pageLink} render={({match}) => <pages.view />} />
-      </div>
+        <Navbar/> 
+        <Route path={pages.pageLink} render={({match}) => <pages.view />} />
+      
       </Router>
       </Suspense>
     </div>
