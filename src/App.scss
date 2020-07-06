@@ -61,7 +61,7 @@ h6 {
   .home-right {
     display: flex;
     flex-direction: column;
-    width: 30rem;
+    width: 35rem;
   }
 
   .home-left {
@@ -87,7 +87,7 @@ h6 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 30rem;
+  width: 35rem;
 
   .level-item {
     display: flex;
@@ -160,5 +160,53 @@ h6 {
     h4 {
       color: $gray-mid;
     }
+  }
+}
+
+.tableContainer {
+  align-self: center;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  width: 35rem;
+  background-color: $gray-hover !important;
+
+  .tablePaper{
+    background-color:#f6f6f7 ;
+    
+  }
+  .is-confirmed {
+      color: $cherry;
+  }
+  .is-active {
+      color: $blue;
+  }
+  .is-recovered {
+      color: $green;
+  }
+  .is-deceased {
+      color: $gray;
+  }
+}
+
+// svg {
+    
+//   overflow: visible;
+// }
+
+.Minigraph {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 35rem;
+
+  .svg-parent {
+    background: transparent !important;
+    width: calc(25%);
   }
 }
