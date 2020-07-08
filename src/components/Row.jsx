@@ -3,14 +3,14 @@ import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
+
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import {PRIMARY_STATISTICS,STATE_NAMES,getStatistic,capitalize} from '../utils/commonfunc';
+import {PRIMARY_STATISTICS,STATE_NAMES,getStatistic} from '../utils/commonfunc';
 import { IconButton, Collapse, Box, TableFooter } from '@material-ui/core';
 
 class Row extends React.Component{
@@ -23,7 +23,7 @@ class Row extends React.Component{
         }
     }
 
-    toggleSubTable = ()=> {
+    toggleSubTable=()=> {
         this.setState({open:!this.state.open})
     }
 
@@ -43,7 +43,7 @@ class Row extends React.Component{
                     <TableCell component="th" scope="row">
                         {STATE_NAMES[this.state.code]}
                     </TableCell>
-                    {PRIMARY_STATISTICS.map((statistics,index) => (
+                    {PRIMARY_STATISTICS.map((statistics) => (
                         <TableCell key={statistics}  align="right">
                             <h4 className={` is-${statistics}`}> {getStatistic(this.state.data , 'delta',statistics) > 0 ? `+`+getStatistic(this.state.data , 'delta',statistics) : ` `} </h4>
                             <h3> {getStatistic(this.state.data , 'total',statistics)} </h3>
@@ -69,12 +69,12 @@ class Row extends React.Component{
                                     <TableBody>
                                         { this.state.data.districts ?  
                                             Object.keys(this.state.data.districts)
-                                            .map((district,index)=>(
-                                                <TableRow>
+                                            .map((district)=>(
+                                                <TableRow key={district}>
                                                     <TableCell component="th" scope="row">
                                                         {district}
                                                     </TableCell>
-                                                    {PRIMARY_STATISTICS.map((statistics,index) => (
+                                                    {PRIMARY_STATISTICS.map((statistics) => (
                                                         <TableCell key={statistics}  align="right">
                                                             <h4 className={` is-${statistics}`}> {getStatistic(this.state.data.districts[district] , 'delta',statistics) > 0 ?`+`+getStatistic(this.state.data.districts[district] , 'delta',statistics):" "} </h4>
                                                             <h3> {getStatistic(this.state.data.districts[district] , 'total',statistics)} </h3>

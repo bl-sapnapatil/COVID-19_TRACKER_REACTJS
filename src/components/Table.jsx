@@ -36,7 +36,7 @@ class TableData extends React.Component{
                         <TableBody>
                             { Object.keys(this.state.data)
                             .filter((stateCode)=> stateCode != 'TT')
-                            .map((stateCode,index)=>(
+                            .map((stateCode)=>(
                                 <Row key={stateCode} code={stateCode} data={this.state.data[stateCode]} ></Row>
                             ))}
                         <Row key={'TT'} code={'TT'} data={this.state.data['TT']} ></Row>

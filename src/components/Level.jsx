@@ -14,8 +14,8 @@ class Level extends React.Component{
     render(){
         return(
             <div className="Level">
-                {PRIMARY_STATISTICS.map((statistics,index) => (
-                    <div className={`level-item is-${statistics}`}>
+                {PRIMARY_STATISTICS.map((statistics) => (
+                    <div key={statistics} className={`level-item is-${statistics}`}>
                         <h5>{capitalize(statistics)}</h5>
                         <h4> {`+`+getStatistic(this.state.data , 'delta',statistics)}</h4>
                         <h1>{getStatistic(this.state.data , 'total',statistics)}</h1>

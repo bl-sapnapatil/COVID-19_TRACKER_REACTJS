@@ -7,7 +7,11 @@ import Table from './Table'
 import MiniGraph from './MiniGraph';
 
 class Home extends React.Component{
+    constructor(props){
+        super(props)
+    }
     render(){
+       
         return(
             <div className="Home">
                 <div className="home-left">

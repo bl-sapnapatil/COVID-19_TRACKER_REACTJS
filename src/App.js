@@ -1,6 +1,6 @@
 import './App.scss';
 import React, { lazy,Suspense } from 'react';
-import {BrowserRouter as Router,Route,Redirect} from 'react-router-dom';
+import {BrowserRouter as Router,Route,} from 'react-router-dom';
 import Navbar from './components/Navbar'
 
 const Home = lazy(()=>
