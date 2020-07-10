@@ -20,7 +20,7 @@ function App() {
       <Suspense fallback={<div />}>
       <Router>
         <Navbar/> 
-        <Route path={pages.pageLink} render={({match}) => <pages.view />} />
+        <Route path={pages.pageLink}component={Home} />
       
       </Router>
       </Suspense>

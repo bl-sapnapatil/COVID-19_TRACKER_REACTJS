@@ -1,3 +1,10 @@
+ /***************************************************************
+ * @purpose  : Define Rows Of  
+ * @file     : Row.jsx             
+ * @overview : Componet To Handel Rows of Table Ui  
+ * @author   : priti shinde
+ * @since    : 5/6/2020
+***************************************************************/
 import React from 'react';
 
 import Table from '@material-ui/core/Table';
@@ -22,19 +29,20 @@ class Row extends React.Component{
             open:false
         }
     }
+    componentDidUpdate(prevProps){
+        if(prevProps !== this.props)
+            this.setState({code:this.props.code,data:this.props.data});
+    }
 
     toggleSubTable=()=> {
         this.setState({open:!this.state.open})
     }
-
-    
-
     render(){
         return (
             <React.Fragment>
                 <TableRow>
                     <TableCell>
-                        {this.state.code != 'TT' ? 
+                        {this.state.code !== 'TT' ? 
                             <IconButton aria-label="expand row" size="small" onClick={this.toggleSubTable}>
                                 {this.state.open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon /> }
                             </IconButton>
@@ -44,9 +52,11 @@ class Row extends React.Component{
                         {STATE_NAMES[this.state.code]}
                     </TableCell>
                     {PRIMARY_STATISTICS.map((statistics) => (
-                        <TableCell key={statistics}  align="right">
-                            <h4 className={` is-${statistics}`}> {getStatistic(this.state.data , 'delta',statistics) > 0 ? `+`+getStatistic(this.state.data , 'delta',statistics) : ` `} </h4>
-                            <h3> {getStatistic(this.state.data , 'total',statistics)} </h3>
+                        <TableCell key={statistics}  >
+                            <div className={"statistic"}>
+                                <span className={` is-${statistics}`}> {getStatistic(this.state.data , 'delta',statistics) > 0 ? `+`+getStatistic(this.state.data , 'delta',statistics) : ` `} </span>
+                                <span className={"total"}> {getStatistic(this.state.data , 'total',statistics)} </span>
+                            </div>
                         </TableCell>
                     ))}
                     
@@ -60,10 +70,10 @@ class Row extends React.Component{
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>District</TableCell>
-                                            <TableCell>C</TableCell>
-                                            <TableCell>A</TableCell>
-                                            <TableCell>R</TableCell>
-                                            <TableCell>D</TableCell>
+                                            <TableCell align="right">C</TableCell>
+                                            <TableCell align="right">A</TableCell>
+                                            <TableCell align="right">R</TableCell>
+                                            <TableCell align="right">D</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -75,14 +85,14 @@ class Row extends React.Component{
                                                         {district}
                                                     </TableCell>
                                                     {PRIMARY_STATISTICS.map((statistics) => (
-                                                        <TableCell key={statistics}  align="right">
-                                                            <h4 className={` is-${statistics}`}> {getStatistic(this.state.data.districts[district] , 'delta',statistics) > 0 ?`+`+getStatistic(this.state.data.districts[district] , 'delta',statistics):" "} </h4>
-                                                            <h3> {getStatistic(this.state.data.districts[district] , 'total',statistics)} </h3>
+                                                        <TableCell key={statistics} >
+                                                            <div className={"statistic"}>
+                                                                <span className={` is-${statistics}`}> {getStatistic(this.state.data.districts[district] , 'delta',statistics) > 0 ?`+`+getStatistic(this.state.data.districts[district] , 'delta',statistics):" "} </span>
+                                                                <span className={"total"}> {getStatistic(this.state.data.districts[district] , 'total',statistics)} </span>
+                                                            </div>
                                                         </TableCell>
                                                     ))}
-                                                    
                                                 </TableRow>
-
                                             ))
                                             
                                         :""
@@ -104,12 +114,6 @@ class Row extends React.Component{
 
                 </TableRow>:""}
             </React.Fragment>
-
-
-            // <div>
-            //     {this.state.code}
-
-            // </div>
         )
     }
 }

@@ -1,4 +1,7 @@
 
+import {format} from 'date-fns';
+import {utcToZonedTime} from 'date-fns-tz';
+
 export const PRIMARY_STATISTICS = [
   'confirmed',
   'active',
@@ -30,6 +33,16 @@ export const INDIA_ISO_SUFFIX = 'T00:00:00+05:30';
 
 export const parseIndiaDate = (isoDate) => {
   return new Date(isoDate + INDIA_ISO_SUFFIX);
+};
+
+export const formatDate = (unformattedDate, formatString) => {
+  if (
+    typeof unformattedDate === 'string' &&
+    unformattedDate.match(/^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$/g)
+  )
+    unformattedDate += INDIA_ISO_SUFFIX;
+  const date = utcToZonedTime(new Date(unformattedDate), 'Asia/Kolkata');
+  return format(date, formatString);
 };
 
 export const COLORS = {
